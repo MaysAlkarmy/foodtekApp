@@ -71,4 +71,10 @@ class OfferController extends Controller
 
    } 
 
+   public function getAllOffer(){
+
+    $offers = DB::table('offers')->get();
+    return response()->json($offers);
+
+   }
  }

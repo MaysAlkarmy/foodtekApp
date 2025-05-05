@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,7 @@ Route::post('/login',[AuthController::class,'login']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post("/logout", [AuthController::class, 'logout']);
 });
-Route::post('/getItemsByCategory', [MenuController::class, 'getItemsByCategory'])->name('getItemsByCategory');
+Route::get('/getItemsByCategory', [MenuController::class, 'getItemsByCategory'])->name('getItemsByCategory');
 Route::get('/topRated', [MenuController::class, 'topRated'])->name('topRated');
 Route::get('/getMainCategory', [MenuController::class, 'getMainCategory'])->name('getMainCategory');
 Route::post('/getItemById', [MenuController::class, 'getItemById'])->name('getItemById');
@@ -34,7 +35,7 @@ Route::post('/createItem', [MenuController::class, 'createItem'])->name('createI
 
 Route::post('/addToFavourites', [FavoriteController::class, 'addToFavourites'])->name('addToFavourites');
 Route::post('/getUserFavourite', [FavoriteController::class, 'getUserFavourite'])->name('getUserFavourite');
-Route::post('/deleteUserFavourite', [FavoriteController::class, 'deleteUserFavourite'])->name('deleteUserFavourite');
+Route::delete('/deleteUserFavourite', [FavoriteController::class, 'deleteUserFavourite'])->name('deleteUserFavourite');
 
 Route::get('/bannerImage', [BannerController::class, 'bannerImage'])->name('bannerImage');
 
@@ -42,6 +43,10 @@ Route::post('/createReview', [ReviewController::class, 'createReview'])->name('c
 
 Route::post('/createOffer', [OfferController::class, 'createOffer'])->name('createOffer');
 Route::post('/updateOffer{id}', [OfferController::class, 'updateOffer'])->name('updateOffer');
+Route::get('/getAllOffer', [OfferController::class, 'getAllOffer'])->name('getAllOffer');
+
+Route::get('/addNotification', [NotificationController::class, 'addNotification'])->name('addNotification');
+Route::post('/getNotification', [NotificationController::class, 'getNotification'])->name('getNotification');
 
 
 
